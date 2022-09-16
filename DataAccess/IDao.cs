@@ -10,7 +10,7 @@ namespace DataAccess
     {
         IEnumerable<TEntity> GetAll();
 
-        TEntity? GetById(int id);
+        TEntity? GetById(dynamic id);
 
         void Update(TEntity entity);
 

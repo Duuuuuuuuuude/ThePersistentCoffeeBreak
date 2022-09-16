@@ -8,14 +8,15 @@ namespace Model
 {
     public class Order
     {
-        public int Id { get; set; }
-        public string Customer { get; set; }
+        public string CustomerName { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
+        public string Status { get; set; } = "New";
+        public int Discount { get; set; } = 0;
         public IList<Orderline> Orderlines { get; } = new List<Orderline>();
 
-        public Order(int id, string customer)
+        public Order(string customer)
         {
-            Customer = customer;
-            Id = id;
+            CustomerName = customer;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace DataAccess.MemoryDaos
             return _products;
         }
 
-        public Product? GetById(int id)
+        public Product? GetById(dynamic id)
         {
             return _products.SingleOrDefault(p => p.Id == id);
         }

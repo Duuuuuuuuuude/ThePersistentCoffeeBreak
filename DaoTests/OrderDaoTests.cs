@@ -13,7 +13,7 @@ namespace DaoTests
             IDao<Order> orderDao = DaoFactory.CreateOrderDao();
 
             // Act
-            Order? test = orderDao.GetById(2);
+            Order? test = orderDao.GetById("Kurt");
 
             // Assert
             Assert.NotNull(test);
@@ -37,8 +37,9 @@ namespace DaoTests
         public void TestDeleteOrderSuccess()
         {
             // Arrange
+            string customerName = "Hans";
             IDao<Order> orderDao = DaoFactory.CreateOrderDao();
-            Order? test = orderDao.GetById(1);
+            Order? test = orderDao.GetById(customerName);
 
             // Act
             if (test != null)
@@ -47,15 +48,16 @@ namespace DaoTests
             }
 
             // Assert
-            Assert.Null(orderDao.GetById(1));
+            Assert.Null(orderDao.GetById(customerName));
         }
 
         [Fact]
         public void TestUpdateOrderSuccess()
         {
             // Arrange
+            string customerName = "Hans";
             IDao<Order> orderDao = DaoFactory.CreateOrderDao();
-            Order? test = orderDao.GetById(1);
+            Order? test = orderDao.GetById(customerName);
 
             // Act
             if (test != null)
@@ -65,27 +67,27 @@ namespace DaoTests
             }
 
             // Assert
-            Assert.Equal(0, orderDao.GetById(1)?.Orderlines.Count);
+            Assert.Equal(0, orderDao.GetById(customerName)?.Orderlines.Count);
         }
 
         [Fact] 
         public void TestCreateOrderSuccess()
         {
             // Arrange
-            IDao<Order> orderDao = DaoFactory.CreateOrderDao();
             string customerName = "TestCustomer";
+            IDao<Order> orderDao = DaoFactory.CreateOrderDao();
             var orderCount = orderDao.GetAll().Count();
-            Order order = new Order(0, customerName);
+            Order order = new Order(customerName);
 
             // Act
             orderDao.Create(order);
             var testCount = orderDao.GetAll().Count();
-            var testOrder = orderDao.GetById(4);
+            var testOrder = orderDao.GetById(customerName);
 
             // Assert
             Assert.True(testCount == orderCount + 1);
             Assert.NotNull(testOrder);
-            Assert.Equal(customerName, testOrder?.Customer);
+            Assert.Equal(customerName, testOrder?.CustomerName);
         }
     }
 }

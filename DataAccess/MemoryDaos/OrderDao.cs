@@ -9,8 +9,6 @@ namespace DataAccess.MemoryDaos
 {
     internal class OrderDao : IDao<Order>
     {
-        private int _currentId = 3;
-
         private IList<Order> _orders = new List<Order>();
 
         private void Init()
@@ -21,16 +19,16 @@ namespace DataAccess.MemoryDaos
             Product product4 = new(4, "Chai", 49.95m);
             Product product5 = new(5, "Espresso", 25.00m);
 
-            Order order1 = new(1, "Hans");
+            Order order1 = new("Hans");
             order1.Orderlines.Add(new Orderline(1, product1));
             order1.Orderlines.Add(new Orderline(1, product2));
 
-            Order order2 = new(2, "Kurt");
+            Order order2 = new("Kurt");
             order2.Orderlines.Add(new Orderline(1, product3));
             order2.Orderlines.Add(new Orderline(2, product4));
             order2.Orderlines.Add(new Orderline(1, product5));
 
-            Order order3 = new(3, "Else");
+            Order order3 = new("Else");
             order3.Orderlines.Add(new Orderline(2, product1));
 
             _orders.Add(order1);
@@ -48,20 +46,19 @@ namespace DataAccess.MemoryDaos
             return _orders;
         }
 
-        public Order? GetById(int id)
+        public Order? GetById(dynamic id)
         {
-            return _orders.SingleOrDefault(o => o.Id == id);
+            return _orders.SingleOrDefault(o => o.CustomerName == id);
         }
 
         public void Create(Order order)
         {            
-            order.Id = ++_currentId;
             _orders.Add(order);
         }
 
         public void Update(Order order)
         {
-            Order? old = _orders.SingleOrDefault(o => o.Id == order.Id);
+            Order? old = _orders.SingleOrDefault(o => o.CustomerName == order.CustomerName);
             if (old != null)
             {
                 old.Orderlines.Clear();
@@ -74,7 +71,7 @@ namespace DataAccess.MemoryDaos
 
         public void Delete(Order order)
         {
-            Order? old = _orders.SingleOrDefault(o => o.Id == order.Id);
+            Order? old = _orders.SingleOrDefault(o => o.CustomerName == order.CustomerName);
             if (old != null)
             {
                 _orders.Remove(old);
