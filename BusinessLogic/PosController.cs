@@ -9,13 +9,18 @@ namespace BusinessLogic
         private IDao<Product> _productDao = DaoFactory.CreateProductDao();
 
         public void CreateOrder(Order order)
-        { 
-            throw new NotImplementedException();
+        {
+            _orderDao.Create(order);
         }
 
         public void FinishCustomerOrder(string customerName)
         {
-            throw new NotImplementedException();
+            Order finishedOrder = _orderDao.GetById(customerName);
+            if (finishedOrder != null)
+            {
+                finishedOrder.Status = "Finished";
+                _orderDao.Update(finishedOrder);
+            }
         }
 
         public IEnumerable<Product> GetProducts()
