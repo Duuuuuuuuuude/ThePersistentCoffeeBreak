@@ -9,9 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaoTests", "DaoTests\DaoTests.csproj", "{47475870-8358-4795-9E0B-33D6FE373B75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{3B7A57BE-25F8-4AFE-AC8D-FEC49EA260BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{3B7A57BE-25F8-4AFE-AC8D-FEC49EA260BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApplication", "ClientApplication\ClientApplication.csproj", "{96D88E45-AAB8-4453-8255-C23AD7DCA80F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApplication", "ClientApplication\ClientApplication.csproj", "{96D88E45-AAB8-4453-8255-C23AD7DCA80F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbScripts", "DbScripts", "{AA16253F-78D5-4038-B5BA-2E5E845A4E60}"
+	ProjectSection(SolutionItems) = preProject
+		Setup\CreateDb.sql = Setup\CreateDb.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
